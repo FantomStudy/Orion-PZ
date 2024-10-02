@@ -1,0 +1,831 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище OrionModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="1" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="1" />
+          <Property Name="dateOfBirth" Type="date" Nullable="false" />
+          <Property Name="shop_id" Type="int" Nullable="false" />
+          <Property Name="post_id" Type="int" Nullable="false" />
+          <Property Name="passport" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="article" />
+          </Key>
+          <Property Name="article" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="storage_id" Type="int" Nullable="false" />
+          <Property Name="count_storage" Type="int" Nullable="false" />
+          <Property Name="supplier_id" Type="int" Nullable="false" />
+          <Property Name="image_path" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Orion.dbo.Goods_cart" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Goods_cart">
+          <Key>
+            <PropertyRef Name="article" />
+            <PropertyRef Name="count" />
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="article" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="cart_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employee_id" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="date" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="cost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="cart_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="method" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="salary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="duty" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="shop_id" />
+          </Key>
+          <Property Name="shop_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Storages">
+          <Key>
+            <PropertyRef Name="storage_id" />
+          </Key>
+          <Property Name="storage_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="purpose" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Carts__client_id__4F7CD00D">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Carts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__post___3E52440B">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__shop___3D5E1FD2">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="shop_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="shop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods__storage_i__49C3F6B7">
+          <End Role="Storages" Type="Self.Storages" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storages">
+              <PropertyRef Name="storage_id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods__supplier___4AB81AF0">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods_car__artic__5165187F">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Goods_cart" Type="Self.Goods_cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="article" />
+            </Principal>
+            <Dependent Role="Goods_cart">
+              <PropertyRef Name="article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods_car__cart___52593CB8">
+          <End Role="Carts" Type="Self.Carts" Multiplicity="1" />
+          <End Role="Goods_cart" Type="Self.Goods_cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carts">
+              <PropertyRef Name="cart_id" />
+            </Principal>
+            <Dependent Role="Goods_cart">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__cart_id__59FA5E80">
+          <End Role="Carts" Type="Self.Carts" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carts">
+              <PropertyRef Name="cart_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__employee__571DF1D5">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__payment___59063A47">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__status_i__5812160E">
+          <End Role="Order_status" Type="Self.Order_status" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище OrionModelContainer">
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_status" EntityType="Self.Order_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storages" EntityType="Self.Storages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods_cart" EntityType="Self.Goods_cart" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Goods_cart].[article] AS [article], 
+    [Goods_cart].[count] AS [count], 
+    [Goods_cart].[cart_id] AS [cart_id]
+    FROM [dbo].[Goods_cart] AS [Goods_cart]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Carts__client_id__4F7CD00D" Association="Self.FK__Carts__client_id__4F7CD00D">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Carts" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__post___3E52440B" Association="Self.FK__Employees__post___3E52440B">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__shop___3D5E1FD2" Association="Self.FK__Employees__shop___3D5E1FD2">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods__storage_i__49C3F6B7" Association="Self.FK__Goods__storage_i__49C3F6B7">
+            <End Role="Storages" EntitySet="Storages" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods__supplier___4AB81AF0" Association="Self.FK__Goods__supplier___4AB81AF0">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods_car__artic__5165187F" Association="Self.FK__Goods_car__artic__5165187F">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Goods_cart" EntitySet="Goods_cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods_car__cart___52593CB8" Association="Self.FK__Goods_car__cart___52593CB8">
+            <End Role="Carts" EntitySet="Carts" />
+            <End Role="Goods_cart" EntitySet="Goods_cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__cart_id__59FA5E80" Association="Self.FK__Orders__cart_id__59FA5E80">
+            <End Role="Carts" EntitySet="Carts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__employee__571DF1D5" Association="Self.FK__Orders__employee__571DF1D5">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__payment___59063A47" Association="Self.FK__Orders__payment___59063A47">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__status_i__5812160E" Association="Self.FK__Orders__status_i__5812160E">
+            <End Role="Order_status" EntitySet="Order_status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OrionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Carts__client_id__4F7CD00D" FromRole="Carts" ToRole="Clients" />
+          <NavigationProperty Name="Goods_cart" Relationship="Self.FK__Goods_car__cart___52593CB8" FromRole="Carts" ToRole="Goods_cart" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__cart_id__59FA5E80" FromRole="Carts" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Carts__client_id__4F7CD00D" FromRole="Clients" ToRole="Carts" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="shop_id" Type="Int32" Nullable="false" />
+          <Property Name="post_id" Type="Int32" Nullable="false" />
+          <Property Name="passport" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK__Employees__post___3E52440B" FromRole="Employees" ToRole="Posts" />
+          <NavigationProperty Name="Shops" Relationship="Self.FK__Employees__shop___3D5E1FD2" FromRole="Employees" ToRole="Shops" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__employee__571DF1D5" FromRole="Employees" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="article" />
+          </Key>
+          <Property Name="article" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="storage_id" Type="Int32" Nullable="false" />
+          <Property Name="count_storage" Type="Int32" Nullable="false" />
+          <Property Name="supplier_id" Type="Int32" Nullable="false" />
+          <Property Name="image_path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Storages" Relationship="Self.FK__Goods__storage_i__49C3F6B7" FromRole="Goods" ToRole="Storages" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Goods__supplier___4AB81AF0" FromRole="Goods" ToRole="Suppliers" />
+          <NavigationProperty Name="Goods_cart" Relationship="Self.FK__Goods_car__artic__5165187F" FromRole="Goods" ToRole="Goods_cart" />
+        </EntityType>
+        <EntityType Name="Order_status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__status_i__5812160E" FromRole="Order_status" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employee_id" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Orders__cart_id__59FA5E80" FromRole="Orders" ToRole="Carts" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Orders__employee__571DF1D5" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="Order_status" Relationship="Self.FK__Orders__status_i__5812160E" FromRole="Orders" ToRole="Order_status" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Orders__payment___59063A47" FromRole="Orders" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="method" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__payment___59063A47" FromRole="Payments" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="salary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="duty" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__post___3E52440B" FromRole="Posts" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Shops">
+          <Key>
+            <PropertyRef Name="shop_id" />
+          </Key>
+          <Property Name="shop_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__shop___3D5E1FD2" FromRole="Shops" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Storages">
+          <Key>
+            <PropertyRef Name="storage_id" />
+          </Key>
+          <Property Name="storage_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="purpose" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK__Goods__storage_i__49C3F6B7" FromRole="Storages" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK__Goods__supplier___4AB81AF0" FromRole="Suppliers" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Goods_cart">
+          <Key>
+            <PropertyRef Name="article" />
+            <PropertyRef Name="count" />
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="article" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="cart_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Goods_car__cart___52593CB8" FromRole="Goods_cart" ToRole="Carts" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK__Goods_car__artic__5165187F" FromRole="Goods_cart" ToRole="Goods" />
+        </EntityType>
+        <Association Name="FK__Carts__client_id__4F7CD00D">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Carts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods_car__cart___52593CB8">
+          <End Role="Carts" Type="Self.Carts" Multiplicity="1" />
+          <End Role="Goods_cart" Type="Self.Goods_cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carts">
+              <PropertyRef Name="cart_id" />
+            </Principal>
+            <Dependent Role="Goods_cart">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__cart_id__59FA5E80">
+          <End Role="Carts" Type="Self.Carts" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carts">
+              <PropertyRef Name="cart_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="cart_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__post___3E52440B">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="post_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="post_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__shop___3D5E1FD2">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="shop_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="shop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__employee__571DF1D5">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods__storage_i__49C3F6B7">
+          <End Role="Storages" Type="Self.Storages" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storages">
+              <PropertyRef Name="storage_id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="storage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods__supplier___4AB81AF0">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Goods_car__artic__5165187F">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Goods_cart" Type="Self.Goods_cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="article" />
+            </Principal>
+            <Dependent Role="Goods_cart">
+              <PropertyRef Name="article" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__status_i__5812160E">
+          <End Role="Order_status" Type="Self.Order_status" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__payment___59063A47">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OrionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carts" EntityType="Self.Carts" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="Order_status" EntityType="Self.Order_status" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" />
+          <EntitySet Name="Shops" EntityType="Self.Shops" />
+          <EntitySet Name="Storages" EntityType="Self.Storages" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Goods_cart" EntityType="Self.Goods_cart" />
+          <AssociationSet Name="FK__Carts__client_id__4F7CD00D" Association="Self.FK__Carts__client_id__4F7CD00D">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Carts" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods_car__cart___52593CB8" Association="Self.FK__Goods_car__cart___52593CB8">
+            <End Role="Carts" EntitySet="Carts" />
+            <End Role="Goods_cart" EntitySet="Goods_cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__cart_id__59FA5E80" Association="Self.FK__Orders__cart_id__59FA5E80">
+            <End Role="Carts" EntitySet="Carts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__post___3E52440B" Association="Self.FK__Employees__post___3E52440B">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__shop___3D5E1FD2" Association="Self.FK__Employees__shop___3D5E1FD2">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__employee__571DF1D5" Association="Self.FK__Orders__employee__571DF1D5">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods__storage_i__49C3F6B7" Association="Self.FK__Goods__storage_i__49C3F6B7">
+            <End Role="Storages" EntitySet="Storages" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods__supplier___4AB81AF0" Association="Self.FK__Goods__supplier___4AB81AF0">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Goods_car__artic__5165187F" Association="Self.FK__Goods_car__artic__5165187F">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Goods_cart" EntitySet="Goods_cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__status_i__5812160E" Association="Self.FK__Orders__status_i__5812160E">
+            <End Role="Order_status" EntitySet="Order_status" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__payment___59063A47" Association="Self.FK__Orders__payment___59063A47">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище OrionModelContainer" CdmEntityContainer="OrionEntities">
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="OrionModel.Carts">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="OrionModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="OrionModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+                <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="passport" ColumnName="passport" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="OrionModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="storage_id" ColumnName="storage_id" />
+                <ScalarProperty Name="count_storage" ColumnName="count_storage" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_status">
+            <EntityTypeMapping TypeName="OrionModel.Order_status">
+              <MappingFragment StoreEntitySet="Order_status">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="OrionModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="OrionModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="method" ColumnName="method" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="OrionModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="duty" ColumnName="duty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="OrionModel.Shops">
+              <MappingFragment StoreEntitySet="Shops">
+                <ScalarProperty Name="shop_id" ColumnName="shop_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storages">
+            <EntityTypeMapping TypeName="OrionModel.Storages">
+              <MappingFragment StoreEntitySet="Storages">
+                <ScalarProperty Name="storage_id" ColumnName="storage_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="purpose" ColumnName="purpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="OrionModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OrionModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods_cart">
+            <EntityTypeMapping TypeName="OrionModel.Goods_cart">
+              <MappingFragment StoreEntitySet="Goods_cart">
+                <ScalarProperty Name="article" ColumnName="article" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
