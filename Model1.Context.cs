@@ -38,5 +38,7 @@ namespace DB_PZ
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Goods_cart> Goods_cart { get; set; }
+        public virtual DbSet<Accounts> Accounts { get; set; }
+        public virtual DbSet<Reports> Reports { get; set; }
     }
 }

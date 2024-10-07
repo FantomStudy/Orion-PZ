@@ -1,0 +1,157 @@
+﻿<Window
+    x:Class="DB_PZ.EditGoodsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DB_PZ"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="EditWindow"
+    Width="900"
+    Height="550"
+    Background="#fdfdfd"
+    Icon="images/book.png"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Артикул:" />
+            <TextBox
+                x:Name="tbArt"
+                Grid.Row="0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Название:" />
+            <TextBox
+                x:Name="tbName"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Цена:" />
+            <TextBox
+                x:Name="tbCost"
+                Grid.Row="2"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Склад:" />
+            <TextBox
+                x:Name="tbStore"
+                Grid.Row="3"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Количество:" />
+            <TextBox
+                x:Name="tbCount"
+                Grid.Row="4"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Поставщик:" />
+            <TextBox
+                x:Name="tbSup"
+                Grid.Row="5"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+            <TextBlock
+                Grid.Row="6"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource TextBlockStyleDesc}"
+                Text="Изображение:" />
+            <TextBox
+                x:Name="tbImage"
+                Grid.Row="6"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="14"
+                Style="{DynamicResource TextBoxStyle1}" />
+
+        </Grid>
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="Save_Button"
+                Grid.Column="1"
+                Height="50"
+                Margin="10"
+                Click="Save_Button_Click"
+                Content="Сохранить"
+                Style="{DynamicResource ButtonStyle1}" />
+            <Button
+                x:Name="Delete_Button"
+                Grid.Column="0"
+                Margin="10"
+                BorderThickness="0"
+                Click="Delete_Button_Click"
+                Content="Удалить"
+                Style="{DynamicResource ButtonStyle3}" />
+        </Grid>
+    </Grid>
+
+</Window>

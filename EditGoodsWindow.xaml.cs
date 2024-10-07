@@ -18,12 +18,12 @@ namespace DB_PZ
     /// <summary>
     /// Логика взаимодействия для EditWindow.xaml
     /// </summary>
-    public partial class EditWindow : Window
+    public partial class EditGoodsWindow : Window
     {
         private Goods _good;
         private OrionEntities db;
 
-        public EditWindow(Goods good, OrionEntities db)
+        public EditGoodsWindow(Goods good, OrionEntities db)
         {
             InitializeComponent();
             if (good != null)
@@ -76,9 +76,15 @@ namespace DB_PZ
                     supplier_id = Convert.ToInt32(tbSup.Text),
                     image_path = tbImage.Text
                 };
-               
-                db.Goods.Add(newGood);
-                db.SaveChanges();
+                try
+                {
+                    db.Goods.Add(newGood);
+                    db.SaveChanges();
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show($"{er}", "Ошибка");
+                }
             }
 
             Close();
@@ -88,8 +94,16 @@ namespace DB_PZ
             var selectArt = db.Goods.Where(w => w.article == _good.article).FirstOrDefault();
             if (MessageBox.Show($"Вы уверены, что хотите удалить товар {_good.name}({_good.article})?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                db.Goods.Remove(selectArt);
-                db.SaveChanges();
+                try
+                {
+                    db.Goods.Remove(selectArt);
+                    db.SaveChanges();
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show($"{er}", "Ошибка");
+                }
+                
                 Close();
             }
         }
@@ -117,6 +131,11 @@ namespace DB_PZ
                 MessageBox.Show("Стоимость, номер склада и поставщика должны быть целочисленным значением!", "Ошибка");
                 return false;
             }
+            if (tbCount.Text == "0" || tbStore.Text == "0" || tbSup.Text == "0")
+            {
+                MessageBox.Show("Стоимость, номер склада и поставщика - отличны от 0!", "Ошибка");
+                return false;
+            }
             if (tbArt.Text.Length != 8)
             {
                 MessageBox.Show("Длина артикула - 8 символов!", "Ошибка");
@@ -124,7 +143,5 @@ namespace DB_PZ
             }
             return true;
         }
-
-        
     }
 }

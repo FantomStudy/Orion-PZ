@@ -1,0 +1,66 @@
+﻿<Window
+    x:Class="DB_PZ.ReportWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:DB_PZ"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ReportWindow"
+    Width="400"
+    Height="550"
+    Background="#027ef9"
+    Foreground="#fdfdfd"
+    mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            Style="{DynamicResource TextBlockStyleHead}">
+            Обратная связь
+        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            Margin="10,0"
+            VerticalAlignment="Bottom"
+            Style="{DynamicResource TextBlockStyleDesc}">
+            Email
+        </TextBlock>
+        <TextBox
+            x:Name="tbEmail"
+            Grid.Row="3"
+            VerticalAlignment="Center"
+            Style="{DynamicResource TextBoxStyle1}"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Grid.Row="4"
+            Margin="10,0"
+            VerticalAlignment="Bottom"
+            Style="{DynamicResource TextBlockStyleDesc}">
+            Проблема
+        </TextBlock>
+        <TextBox
+            x:Name="tbDesc"
+            Grid.Row="5"
+            VerticalAlignment="Center"
+            Style="{DynamicResource TextBoxStyle1}"
+            TextWrapping="Wrap" />
+        <Button
+            x:Name="btnReport_Send"
+            Grid.Row="7"
+            Click="btnReport_Send_Click"
+            Style="{DynamicResource ButtonStyle2}">
+            Отправить
+        </Button>
+    </Grid>
+</Window>

@@ -22,34 +22,48 @@ namespace DB_PZ
     public partial class MainWindow : Window
     {
         OrionEntities db;
+        GoodsPage gP;
+        ClientsPage cP;
+        EmployeesPage eP;
         public MainWindow()
         {
             InitializeComponent();
-        }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             db = new OrionEntities();
-            dgGoods.ItemsSource = db.Goods.ToList();
         }
-        
-        //Задание номер 3
-        private void dgGoods_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var selectedItem = dgGoods.SelectedItem as Goods;
 
-            if (selectedItem != null)
+        // Обратная связь
+        private void btn_Report_Click(object sender, RoutedEventArgs e)
+        {
+            ReportWindow reportWindow = new ReportWindow();
+            reportWindow.ShowDialog();
+        }
+
+        // Переключение окон
+        private void btnGoods_Click(object sender, RoutedEventArgs e)
+        {
+            if(gP == null)
             {
-                EditWindow editWindow = new EditWindow(selectedItem, db);
-                editWindow.ShowDialog();
-                dgGoods.ItemsSource = db.Goods.ToList();
+                gP = new GoodsPage(db);
             }
+            mainFrame.Navigate(gP);
         }
 
-        private void Extend_Click(object sender, RoutedEventArgs e)
+        private void btnEmp_Click(object sender, RoutedEventArgs e)
         {
-            ExtendWindow ext = new ExtendWindow();
-            ext.Show();
-            this.Close();
+            if (eP == null)
+            {
+                eP = new EmployeesPage(db);
+            }
+            mainFrame.Navigate(eP);
+        }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+            if (cP == null)
+            {
+                cP = new ClientsPage(db);
+            }
+            mainFrame.Navigate(cP);
         }
     }
 }
