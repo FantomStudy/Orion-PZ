@@ -23,7 +23,7 @@ namespace DB_PZ
     {
         OrionEntities db;
         GoodsPage gP;
-        ClientsPage cP;
+        QrPage QrP;
         EmployeesPage eP;
         public MainWindow()
         {
@@ -57,13 +57,13 @@ namespace DB_PZ
             mainFrame.Navigate(eP);
         }
 
-        private void btnClients_Click(object sender, RoutedEventArgs e)
+        private void btnQr_Click(object sender, RoutedEventArgs e)
         {
-            if (cP == null)
+            if(QrP == null)
             {
-                cP = new ClientsPage(db);
-            }
-            mainFrame.Navigate(cP);
+                QrP = new QrPage();
+            } 
+            mainFrame.Navigate(QrP);
         }
     }
 }

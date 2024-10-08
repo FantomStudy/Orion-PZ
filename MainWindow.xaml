@@ -55,12 +55,12 @@
                 Style="{DynamicResource ButtonStyle2}" />-->
 
             <Button
-                x:Name="btnClients"
+                x:Name="btnQr"
                 Grid.Row="2"
                 Height="50"
                 VerticalAlignment="Center"
-                Click="btnClients_Click"
-                Content="Клиентская база"
+                Click="btnQr_Click"
+                Content="Qr-Code"
                 Style="{DynamicResource ButtonStyle2}" />
 
             <Button
