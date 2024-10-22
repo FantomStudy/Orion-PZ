@@ -25,6 +25,7 @@ namespace DB_PZ
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
@@ -33,12 +34,11 @@ namespace DB_PZ
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
+        public virtual DbSet<Reports> Reports { get; set; }
         public virtual DbSet<Shops> Shops { get; set; }
         public virtual DbSet<Storages> Storages { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Goods_cart> Goods_cart { get; set; }
-        public virtual DbSet<Accounts> Accounts { get; set; }
-        public virtual DbSet<Reports> Reports { get; set; }
     }
 }

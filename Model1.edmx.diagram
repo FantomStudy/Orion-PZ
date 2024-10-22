@@ -4,34 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b903d856eac54402976703752daa1bd6" Name="Diagram1" ZoomLevel="92">
+      <Diagram DiagramId="83218d6d90224679a369eb2eebabdbf0" Name="Diagram1">
+        <EntityTypeShape EntityType="OrionModel.Accounts" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="OrionModel.Carts" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="OrionModel.Clients" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Employees" Width="1.5" PointX="3.25" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Goods" Width="1.5" PointX="8.375" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Order_status" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Orders" Width="1.5" PointX="5.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Payments" Width="1.5" PointX="7.125" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Posts" Width="1.5" PointX="1.5" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Shops" Width="1.5" PointX="5.125" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Storages" Width="1.5" PointX="11" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Suppliers" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.sysdiagrams" Width="1.5" PointX="12.875" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="OrionModel.Goods_cart" Width="1.5" PointX="5.5" PointY="2.875" IsExpanded="true" />
-        <AssociationConnector Association="OrionModel.FK__Carts__client_id__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Goods_car__cart___52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Orders__cart_id__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Employees__post___3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Employees__shop___3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Orders__employee__571DF1D5" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Goods__storage_i__49C3F6B7" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Goods__supplier___4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Goods_car__artic__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Orders__status_i__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="OrionModel.FK__Orders__payment___59063A47" ManuallyRouted="false" >
-        </AssociationConnector>
-        <EntityTypeShape EntityType="OrionModel.Accounts" Width="1.5" PointX="1.375" PointY="8.5" />
-        <EntityTypeShape EntityType="OrionModel.Reports" Width="1.5" PointX="10.375" PointY="7.5" />
+        <EntityTypeShape EntityType="OrionModel.Employees" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Goods" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Order_status" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Orders" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Payments" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Posts" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Reports" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Shops" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Storages" Width="1.5" PointX="3.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Suppliers" Width="1.5" PointX="3.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrionModel.Goods_cart" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="OrionModel.FK__Carts__client_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Goods_car__cart___5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Orders__cart_id__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Employees__post___3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Employees__shop___3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Orders__employee__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Goods__storage_i__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Goods__supplier___4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Goods_car__artic__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Orders__status_i__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="OrionModel.FK__Orders__payment___5AEE82B9" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -47,5 +47,12 @@ namespace DB_PZ
                 MessageBox.Show(er.ToString());
             }
         }
+
+        private void ToReg_button_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrWindow registrWindow = new RegistrWindow();
+            registrWindow.Show();
+            this.Close();
+        }
     }
 }
