@@ -28,17 +28,22 @@ namespace DB_PZ
 
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            db = new OrionEntities();
+            db = new OrionEntities();     
             try
             {
-                var user = db.Accounts.Where(d => (d.login == tbLogin.Text && d.password == tbPass.Text)).FirstOrDefault();
-                if (user != null)
+                var user = db.Accounts.Where(d => (d.login == tbLogin.Text)).FirstOrDefault();
+                string hash = user.password;
+                string salt = user.salt;
+
+                bool isValid = PasswordHelper.VerifyPassword(tbLogin.Text, hash, salt);
+                if (isValid)
                 {
                     MainWindow main = new MainWindow();
                     main.Show();
                     this.Close();
                 }
-                else {
+                else
+                {
                     MessageBox.Show("Логин или пароль не верны!", "Ошибка");
                 }
             }
@@ -46,6 +51,7 @@ namespace DB_PZ
             {
                 MessageBox.Show(er.ToString());
             }
+            
         }
 
         private void ToReg_button_Click(object sender, RoutedEventArgs e)

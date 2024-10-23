@@ -32,10 +32,11 @@ namespace DB_PZ
             db = new OrionEntities();
             if(tbLogin.Text != "" && tbPass.Text != "")
             {
+                string salt = PasswordHelper.GenerateSalt();
                 Accounts acc = new Accounts
                 {
                     login = tbLogin.Text,
-                    salt = PasswordHelper.GenerateSalt(),
+                    salt = salt,
                     password = PasswordHelper.HashPassword(tbPass.Text, salt)
                 };
                 try
