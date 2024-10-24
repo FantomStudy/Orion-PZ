@@ -10,6 +10,7 @@
     Height="550"
     Background="#fdfdfd"
     Icon="images/book.png"
+    WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
     <Grid Margin="10">
         <Grid.RowDefinitions>

@@ -22,19 +22,20 @@ namespace DB_PZ
     public partial class MainWindow : Window
     {
         OrionEntities db;
+
         GoodsPage gP;
         QrPage QrP;
         EmployeesPage eP;
-        public MainWindow()
+        public MainWindow(OrionEntities db)
         {
             InitializeComponent();
-            db = new OrionEntities();
+            this.db = db;
         }
 
         // Обратная связь
         private void btn_Report_Click(object sender, RoutedEventArgs e)
         {
-            ReportWindow reportWindow = new ReportWindow();
+            ReportWindow reportWindow = new ReportWindow(db);
             reportWindow.ShowDialog();
         }
 
@@ -47,7 +48,6 @@ namespace DB_PZ
             }
             mainFrame.Navigate(gP);
         }
-
         private void btnEmp_Click(object sender, RoutedEventArgs e)
         {
             if (eP == null)
@@ -56,7 +56,6 @@ namespace DB_PZ
             }
             mainFrame.Navigate(eP);
         }
-
         private void btnQr_Click(object sender, RoutedEventArgs e)
         {
             if(QrP == null)

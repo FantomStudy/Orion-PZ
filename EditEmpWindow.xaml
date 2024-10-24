@@ -9,6 +9,7 @@
     Height="550"
     Background="#fdfdfd"
     Icon="images/book.png"
+    WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -43,7 +44,7 @@
                 VerticalAlignment="Center"
                 FontSize="14"
                 Style="{DynamicResource TextBoxStyle1}" />
-            
+
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="0"
@@ -57,7 +58,7 @@
                 VerticalAlignment="Center"
                 FontSize="14"
                 Style="{DynamicResource TextBoxStyle1}" />
-            
+
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="0"

@@ -24,28 +24,34 @@ namespace DB_PZ
         public AuthWindow()
         {
             InitializeComponent();
+            db = new OrionEntities(); 
         }
 
         private void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            db = new OrionEntities();     
             try
             {
                 var user = db.Accounts.Where(d => (d.login == tbLogin.Text)).FirstOrDefault();
-                string hash = user.password;
-                string salt = user.salt;
-
-                bool isValid = PasswordHelper.VerifyPassword(tbLogin.Text, hash, salt);
-                if (isValid)
+                if(user != null)
                 {
-                    MainWindow main = new MainWindow();
-                    main.Show();
-                    this.Close();
+                    string hash = user.password;
+                    string salt = user.salt;
+                    bool isValid = PasswordHelper.VerifyPassword(tbPass.Text, hash, salt);
+                    if (isValid)
+                    {
+                        MainWindow main = new MainWindow(db);
+                        main.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пароль не верный!", "Ошибка");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Логин или пароль не верны!", "Ошибка");
-                }
+                    MessageBox.Show("Пользователя с таким логином нет!", "Ошибка");
+                } 
             }
             catch (Exception er)
             {
@@ -54,9 +60,9 @@ namespace DB_PZ
             
         }
 
-        private void ToReg_button_Click(object sender, RoutedEventArgs e)
+        private void ToRegistr_Button_Click(object sender, RoutedEventArgs e)
         {
-            RegistrWindow registrWindow = new RegistrWindow();
+            RegistrWindow registrWindow = new RegistrWindow(db);
             registrWindow.Show();
             this.Close();
         }

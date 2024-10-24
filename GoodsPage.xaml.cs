@@ -70,7 +70,6 @@ namespace DB_PZ
             dgGoods.ItemsSource = db.Goods.ToList();
         }
 
-
         private void btn_export_Click(object sender, RoutedEventArgs e)    // Выключение взаимодействия с таблицей, добавление новых колонн и их удаление, присоединение таблиц и диалоговое окно с печатью
         {
             try

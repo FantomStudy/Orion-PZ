@@ -30,14 +30,21 @@ namespace DB_PZ
 
         private void btnGenerate_Click(object sender, RoutedEventArgs e)
         {
-            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
-            QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(tbLink.Text, QRCodeGenerator.ECCLevel.H);
-            XamlQRCode qrCode = new XamlQRCode(qRCodeData);
+            if(tbLink.Text != "")
+            {
+                QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
+                QRCodeData qRCodeData = qrCodeGenerator.CreateQrCode(tbLink.Text, QRCodeGenerator.ECCLevel.H);
+                XamlQRCode qrCode = new XamlQRCode(qRCodeData);
 
-            string hexColor = ColorToHex(qrCodeColor);
+                string hexColor = ColorToHex(qrCodeColor);
 
-            DrawingImage qrCodeAsXaml = qrCode.GetGraphic(20, hexColor, "#ffffff");
+                DrawingImage qrCodeAsXaml = qrCode.GetGraphic(20, hexColor, "#ffffff");
                 imageQr.Source = qrCodeAsXaml;
+            }
+            else
+            {
+                MessageBox.Show("Введите в поле что либо!","Ошибка");
+            }
             
         }
         private string ColorToHex(Color color)

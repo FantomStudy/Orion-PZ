@@ -12,19 +12,18 @@
     MinHeight="450"
     Background="#fdfdfd"
     Icon="images/arrow.png"
+    WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
         <Grid
             x:Name="menu"
             Grid.Column="0"
             Width="220"
             Background="#027ef9">
-
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -44,16 +43,13 @@
                 Click="btnGoods_Click"
                 Content="Товары"
                 Style="{DynamicResource ButtonStyle2}" />
-
             <!--<Button
                 x:Name="btnOrders"
-
                 Height="50"
                 VerticalAlignment="Center"
                 Click="btnOrders_Click"
                 Content="Заказы"
                 Style="{DynamicResource ButtonStyle2}" />-->
-
             <Button
                 x:Name="btnQr"
                 Grid.Row="2"
@@ -62,7 +58,6 @@
                 Click="btnQr_Click"
                 Content="Qr-Code"
                 Style="{DynamicResource ButtonStyle2}" />
-
             <Button
                 x:Name="btnEmployees"
                 Grid.Row="3"
@@ -71,7 +66,6 @@
                 Click="btnEmp_Click"
                 Content="Сотрудники"
                 Style="{DynamicResource ButtonStyle2}" />
-
             <Button
                 x:Name="btn_Report"
                 Grid.Row="4"

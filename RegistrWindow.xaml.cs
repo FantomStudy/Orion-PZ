@@ -21,15 +21,14 @@ namespace DB_PZ
     public partial class RegistrWindow : Window
     {
         OrionEntities db;
-        public RegistrWindow()
+        public RegistrWindow(OrionEntities db)
         {
             InitializeComponent();
-
+            this.db = db;
         }
 
         private void CreateAcc_Button_Click(object sender, RoutedEventArgs e)
         {
-            db = new OrionEntities();
             if(tbLogin.Text != "" && tbPass.Text != "")
             {
                 string salt = PasswordHelper.GenerateSalt();

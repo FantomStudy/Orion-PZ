@@ -21,10 +21,10 @@ namespace DB_PZ
     public partial class ReportWindow : Window
     {
         OrionEntities db;
-        public ReportWindow()
+        public ReportWindow(OrionEntities db)
         {
             InitializeComponent();
-            db = new OrionEntities();
+            this.db = db;
         }
 
         private void btnReport_Send_Click(object sender, RoutedEventArgs e)
